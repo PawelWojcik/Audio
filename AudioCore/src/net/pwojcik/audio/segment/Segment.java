@@ -1,5 +1,6 @@
 package net.pwojcik.audio.segment;
 
+import javafx.scene.layout.Pane;
 import net.pwojcik.audio.broadcast.BroadcastParticipant;
 
 /**
@@ -15,5 +16,8 @@ public interface Segment extends BroadcastParticipant {
 	 * @return type of segment
 	 */
 	SegmentType getSegmentType();
+	
+
+	Pane getCanvas();
 	
 }

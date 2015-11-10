@@ -1,26 +1,43 @@
 package net.pwojcik.audio.segment;
 
-import net.pwojcik.audio.broadcast.Broadcaster;
+import java.util.Collection;
+import java.util.Collections;
+
+import javafx.scene.layout.Pane;
+import net.pwojcik.audio.broadcast.AbstractBroadcastParticipant;
+import net.pwojcik.audio.module.Module;
 
 /**
  * Abstract representation of  {@link net.pwojcik.audio.segment.Segment}.
  * @author Pawel Wojcik
  * @version 1.0
  */
-public abstract class AbstractSegment implements Segment {
+public abstract class AbstractSegment extends AbstractBroadcastParticipant implements Segment {
 	
-	private Broadcaster broadcaster;
+	private final Collection<Module> modules;
+	private Pane canvas;
+	
+	public AbstractSegment(Collection<Module> applicationModules) {
+		modules = applicationModules;
+	}
 	
 	@Override
-	public void visit(Broadcaster primaryBroadcaster) {
-		broadcaster = primaryBroadcaster;
+	public Collection<String> getObservedFlowTypes() {
+		return Collections.emptyList();
+	}
+
+	@Override
+	public Pane getCanvas() {
+		if (canvas == null) {
+			canvas = produceCanvas();
+		}
+		return canvas;
 	}
 	
-	/**
-	 * Returns application's primary broadcaster.
-	 * @return major broadcaster
-	 */
-	protected final Broadcaster getBroadcaster() {
-		return broadcaster;
+	protected final Collection<Module> getModules() {
+		return modules;
 	}
+
+	protected abstract Pane produceCanvas();
+	
 }

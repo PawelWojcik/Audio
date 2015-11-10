@@ -2,8 +2,6 @@ package net.pwojcik.audio.tree;
 
 import java.util.Optional;
 
-import net.pwojcik.audio.module.ModuleType;
-
 /**
  * Description of GUI tree node. Provides all necessary information about
  * coupling with specific {@link net.pwojcik.audio.module.Module} instance and
@@ -27,8 +25,8 @@ public interface TreeDescription {
 	Optional<String> getTreeIconPath();
 
 	/**
-	 * Optional ModuleType describing parent node of this node.
-	 * @return ModuleType of parent node if available
+	 * Optional module-type String describing parent node of this node.
+	 * @return module type of parent node if available
 	 */
-	Optional<ModuleType> getParentModule();
+	Optional<String> getParentModule();
 }

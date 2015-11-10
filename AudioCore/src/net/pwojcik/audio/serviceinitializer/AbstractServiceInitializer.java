@@ -23,7 +23,7 @@ public abstract class AbstractServiceInitializer implements ServiceInitializer {
 	private Collection<Module> modules;
 
 	@Override
-	public void initialize() {
+	public final void initialize() {
 		modules = createModules();
 		segments = createSegments(modules);
 		Broadcaster broadcaster = new Broadcaster();

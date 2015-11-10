@@ -15,7 +15,7 @@ public abstract class AbstractSegmentFactory implements SegmentFactory {
 	private Collection<Segment> segments;
 
 	@Override
-	public Collection<Segment> create(Collection<Module> applicationModules) {
+	public final Collection<Segment> create(Collection<Module> applicationModules) {
 		if (segments == null) {
 			segments = produceSegments(applicationModules);
 		}

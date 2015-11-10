@@ -1,0 +1,23 @@
+package net.pwojcik.audio.evaluator;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.layout.Pane;
+import net.pwojcik.audio.gui.DesktopViewConstants;
+import net.pwojcik.audio.segment.Segment;
+
+public final class SceneSegmentBoxWidthEvaluator implements ChangeListener<Number> {
+
+	private static final int FIRST_ELEMENT = 0;
+	private final Segment sceneSegment;
+
+	public SceneSegmentBoxWidthEvaluator(Segment scene) {
+		sceneSegment = scene;
+	}
+
+	@Override
+	public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+		Pane canvas = (Pane) sceneSegment.getCanvas().getChildren().get(FIRST_ELEMENT);
+		canvas.setPrefWidth(newValue.intValue() - DesktopViewConstants.NAVIGATION_BAR_SIZE);
+	}
+}

@@ -1,7 +1,9 @@
 package net.pwojcik.audio.module;
 
+import java.util.Collection;
 import java.util.Optional;
 
+import javafx.scene.layout.Pane;
 import net.pwojcik.audio.broadcast.BroadcastParticipant;
 import net.pwojcik.audio.tree.TreeDescription;
 
@@ -25,6 +27,25 @@ public interface Module extends BroadcastParticipant {
 	 * Determines type of module.
 	 * @return type of module
 	 */
-	ModuleType getType();
+	String getType();
 
+	/**
+	 * Defines type of module.
+	 * @param type new type of module
+	 */
+	void setType(String type);
+	
+	/**
+	 * Sets new collection of observed Flow Data types. 
+	 * Collection holds class names with full package names.
+	 * @param observedTypes collection of types
+	 */
+	void setObservedFlowTypes(Collection<String> observedTypes);
+	
+	/**
+	 * Returns GUI representation for that module.
+	 * @return panel for module
+	 */
+	Pane getCanvas();
+	
 }

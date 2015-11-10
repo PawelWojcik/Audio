@@ -6,7 +6,6 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
 import net.pwojcik.audio.flowdata.FlowData;
-import net.pwojcik.audio.flowdata.FlowDataType;
 
 /**
  * Class responsible for handling modules' broadcasted messages and adressing
@@ -17,7 +16,7 @@ import net.pwojcik.audio.flowdata.FlowDataType;
  */
 public final class Broadcaster {
 
-	private Multimap<FlowDataType, BroadcastParticipant> receivers;
+	private Multimap<String, BroadcastParticipant> receivers;
 
 	public Broadcaster() {
 		receivers = ArrayListMultimap.create();
@@ -31,8 +30,8 @@ public final class Broadcaster {
 	 */
 	public void registerParticipants(Collection<BroadcastParticipant> broadcastParticipants) {
 		for (BroadcastParticipant participant : broadcastParticipants) {
-			Collection<FlowDataType> observedTypes = participant.getObservedFlowTypes();
-			for (FlowDataType type : observedTypes) {
+			Collection<String> observedTypes = participant.getObservedFlowTypes();
+			for (String type : observedTypes) {
 				receivers.put(type, participant);
 			}
 			participant.visit(this);
@@ -50,7 +49,7 @@ public final class Broadcaster {
 	 * @param data wrapped message
 	 */
 	public void broadcastData(FlowData data) {
-		FlowDataType dataType = data.getType();
+		String dataType = data.getType();
 		Collection<BroadcastParticipant> broadcastReceivers = receivers.get(dataType);
 		for (BroadcastParticipant participant : broadcastReceivers) {
 			participant.handleData(data);

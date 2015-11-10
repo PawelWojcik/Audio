@@ -11,6 +11,12 @@ public interface FlowData {
 	 * Returns type of transferred data.
 	 * @return type of contained data
 	 */
-	FlowDataType getType();
+	String getType();
+	
+	/**
+	 * Checks whether FlowData is instance of given class.
+	 * @param classRepresentation class to compare
+	 */
+	boolean isInstanceOf(Class<?> classRepresentation);
 	
 }
