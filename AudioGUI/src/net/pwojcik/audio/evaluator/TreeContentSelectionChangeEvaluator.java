@@ -7,6 +7,11 @@ import net.pwojcik.audio.broadcast.Broadcaster;
 import net.pwojcik.audio.flowdata.SceneChangeFlowData;
 import net.pwojcik.audio.tree.TreeItemValueWrapper;
 
+/**
+ * Evaluator that's responding for selection changes on tree in Navigation Segment.
+ * @author Pawel Wojcik
+ * @version 1.0
+ */
 public final class TreeContentSelectionChangeEvaluator implements ChangeListener<TreeItem<TreeItemValueWrapper>> {
 
 	private Broadcaster broadcaster;

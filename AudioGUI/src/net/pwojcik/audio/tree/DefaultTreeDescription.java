@@ -3,11 +3,18 @@ package net.pwojcik.audio.tree;
 import java.util.Optional;
 
 /**
+ * Default implementation of TreeDescription interface.
  * @author Pawel Wojcik
  * @version 1.0
  */
 public final class DefaultTreeDescription implements TreeDescription {
 
+	/**
+	 * Mode of tree describing. If tree node needs to be described with icon and
+	 * in parent node then suitable constructor is prepared.
+	 * @author Pawel Wojcik
+	 * @version 1.0
+	 */
 	public enum TreeDescriptionMode {
 		WITH_ICON, WITH_PARENT
 	}

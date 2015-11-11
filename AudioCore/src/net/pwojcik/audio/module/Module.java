@@ -14,6 +14,12 @@ import net.pwojcik.audio.broadcast.BroadcastParticipant;
 public interface Module extends BroadcastParticipant {
 
 	/**
+	 * Method runs additional initializations after Module is created and
+	 * obtained Broadcaster instance.
+	 */
+	void postConstruct();
+
+	/**
 	 * Determines type of module.
 	 * @return type of module
 	 */

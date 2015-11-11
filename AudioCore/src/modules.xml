@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE modulesConfiguration>
 <modulesConfiguration>
-	<configuration type="LibraryManagement" class="net.pwojcik.audio.module.LibraryManagementModule" />
+	<configuration type="LibraryManagement" class="net.pwojcik.audio.module.LibraryManagementModule">
+		<observedType class="net.pwojcik.audio.flowdata.LibraryContentChangeFlowData" />
+	</configuration>
 </modulesConfiguration>

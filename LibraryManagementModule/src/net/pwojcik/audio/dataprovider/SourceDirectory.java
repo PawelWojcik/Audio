@@ -18,7 +18,7 @@ public final class SourceDirectory {
 	@XmlAttribute(name = "PATH")
 	private String path;
 	@XmlAttribute(name = "ID")
-	private int ID;
+	private int id;
 	@XmlElement(name = "SOURCE")
 	private List<SourceDirectory> subDirectories;
 	
@@ -27,16 +27,16 @@ public final class SourceDirectory {
 	public SourceDirectory() {
 	}
 	
-	public SourceDirectory(int id) {
-		ID = id;
+	public SourceDirectory(int newID) {
+		id = newID;
 	}
 
-	public int getID() {
-		return ID;
+	public int getId() {
+		return id;
 	}
 	
-	public void setID(int id) {
-		ID = id;
+	public void setId(int newID) {
+		id = newID;
 	}
 	
 	public int getParentID() {
@@ -81,8 +81,4 @@ public final class SourceDirectory {
 		return equal;
 	}
 
-	@Override
-	public int hashCode() {
-		return super.hashCode();
-	}
 }

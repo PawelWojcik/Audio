@@ -35,6 +35,10 @@ public abstract class AbstractServiceInitializer implements ServiceInitializer {
 	protected final Collection<Segment> getSegments() {
 		return segments;
 	}
+	
+	protected final Collection<Module> getModules() {
+		return modules;
+	}
 
 	private Collection<Segment> createSegments(Collection<Module> applicationModules) {
 		SegmentFactory factory = produceSegmentFactory();

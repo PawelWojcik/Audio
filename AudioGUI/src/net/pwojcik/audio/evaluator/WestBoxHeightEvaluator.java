@@ -5,6 +5,12 @@ import javafx.beans.value.ObservableValue;
 import net.pwojcik.audio.gui.DesktopViewConstants;
 import net.pwojcik.audio.segment.Segment;
 
+/**
+ * Evaluator that's responding for height changes of West Box. 
+ * West Box is container holding Control Segment and Navigation Segment.
+ * @author Pawel Wojcik
+ * @version 1.0
+ */
 public final class WestBoxHeightEvaluator implements ChangeListener<Number> {
 
 	private final Segment navigationSegment;

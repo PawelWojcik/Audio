@@ -5,6 +5,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.layout.Pane;
 import net.pwojcik.audio.segment.Segment;
 
+/**
+ * Evaluator that's responding for height changes on Scene Segment.
+ * @author Pawel Wojcik
+ * @version 1.0
+ */
 public final class SceneSegmentBoxHeightEvaluator implements ChangeListener<Number> {
 
 	private static final int SECOND_ELEMENT = 1;

@@ -13,6 +13,10 @@ public abstract class AudioException extends RuntimeException {
 		super(message);
 	}
 	
+	public AudioException(Throwable cause) {
+		super(cause);
+	}
+	
 	public AudioException(String message, Throwable cause) {
 		super(message, cause);
 	}

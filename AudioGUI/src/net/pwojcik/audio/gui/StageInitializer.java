@@ -17,6 +17,11 @@ import net.pwojcik.audio.locale.I18N;
 import net.pwojcik.audio.segment.Segment;
 import net.pwojcik.audio.segment.SegmentType;
 
+/**
+ * Class responsible for initializations of application's window.
+ * @author Pawel Wojcik
+ * @version 1.0
+ */
 public final class StageInitializer {
 	
 	private static final String APPLICATION_TITLE = "Application_Title";
@@ -34,6 +39,10 @@ public final class StageInitializer {
 		sceneSegment = fetchSegment(segments, SegmentType.SCENE);
 	}
 
+	/**
+	 * Performs necessary initializations
+	 * @param stage primary stage of application
+	 */
 	public void run(Stage stage) {
 		stage.setTitle(I18N.label(APPLICATION_TITLE));
 		BorderPane borderPane = new BorderPane();

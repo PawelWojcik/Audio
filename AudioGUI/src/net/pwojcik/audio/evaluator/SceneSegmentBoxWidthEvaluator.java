@@ -6,6 +6,11 @@ import javafx.scene.layout.Pane;
 import net.pwojcik.audio.gui.DesktopViewConstants;
 import net.pwojcik.audio.segment.Segment;
 
+/**
+ * Evaluator that's responding for width changes on Scene Segment.
+ * @author Pawel Wojcik
+ * @version 1.0
+ */
 public final class SceneSegmentBoxWidthEvaluator implements ChangeListener<Number> {
 
 	private static final int SECOND_ELEMENT = 1;

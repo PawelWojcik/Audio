@@ -7,6 +7,12 @@ import net.pwojcik.audio.module.Module;
 import net.pwojcik.audio.module.xml.Configuration;
 import net.pwojcik.audio.module.xml.ModuleXMLParser;
 
+/**
+ * Default implementation of module factory.
+ * By default, modules are parsed from XML configuration.
+ * @author Pawel Wojcik
+ * @version 1.0
+ */
 public final class DefaultModuleFactory implements ModuleFactory {
 
 	@Override

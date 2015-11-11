@@ -13,6 +13,12 @@ import net.pwojcik.audio.segment.AbstractSegment;
 import net.pwojcik.audio.segment.SegmentType;
 import net.pwojcik.audio.tree.TreeItemValueWrapper;
 
+/**
+ * Navigation Segment describes area when main application's navigation is
+ * located.
+ * @author Pawel Wojcik
+ * @version 1.0
+ */
 public final class NavigationSegment extends AbstractSegment {
 
 	public NavigationSegment(Collection<Module> applicationModules) {
@@ -23,7 +29,7 @@ public final class NavigationSegment extends AbstractSegment {
 	public SegmentType getSegmentType() {
 		return SegmentType.NAVIGATION;
 	}
-	
+
 	@Override
 	public Pane produceCanvas() {
 		TreeViewFactory factory = new TreeViewFactory(getBroadcaster());

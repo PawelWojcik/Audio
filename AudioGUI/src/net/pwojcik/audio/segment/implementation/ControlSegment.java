@@ -12,6 +12,11 @@ import net.pwojcik.audio.module.Module;
 import net.pwojcik.audio.segment.AbstractSegment;
 import net.pwojcik.audio.segment.SegmentType;
 
+/**
+ * Control Segment is located where all player's control buttons are present.
+ * @author Pawel Wojcik
+ * @version 1.0
+ */
 public final class ControlSegment extends AbstractSegment {
 
 	public ControlSegment(Collection<Module> applicationModules) {

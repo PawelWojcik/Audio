@@ -18,6 +18,11 @@ import net.pwojcik.audio.module.Module;
 import net.pwojcik.audio.tree.TreeDescription;
 import net.pwojcik.audio.tree.TreeItemValueWrapper;
 
+/**
+ * Factory for Tree View used in Navigation Segment.
+ * @author Pawel Wojcik
+ * @version 1.0
+ */
 public final class TreeViewFactory {
 
 	private final Map<String, TreeItem<TreeItemValueWrapper>> nodeMap;
@@ -30,6 +35,11 @@ public final class TreeViewFactory {
 		nodeMap = new HashMap<>();
 	}
 
+	/**
+	 * Prepares instance of Tree View.
+	 * @param modules all modules in application.
+	 * @return tree containing represenations of given modules
+	 */
 	public TreeView<TreeItemValueWrapper> prepareTreeView(Collection<Module> modules) {
 		TreeView<TreeItemValueWrapper> treeView = new TreeView<>(rootItem);
 		treeView.setShowRoot(false);
@@ -46,7 +56,7 @@ public final class TreeViewFactory {
 		if (!(canvasDataContainer instanceof DesktopCanvasDataContainer)) {
 			throw new CanvasDataContainerException();
 		}
-		DesktopCanvasDataContainer canvasData = (DesktopCanvasDataContainer) canvasDataContainer;
+		DesktopCanvasDataContainer<?> canvasData = (DesktopCanvasDataContainer<?>) canvasDataContainer;
 		Optional<TreeDescription> optionalTreeProvider = canvasData.getTreeDescription();
 		if (optionalTreeProvider.isPresent()) {
 			TreeDescription treeDescription = optionalTreeProvider.get();
@@ -64,7 +74,7 @@ public final class TreeViewFactory {
 		Optional<String> treeIconPath = treeDescription.getTreeIconPath();
 		TreeItem<TreeItemValueWrapper> treeNode;
 		if (treeIconPath.isPresent()) {
-			Node icon = ImageProvider.getImageView(treeIconPath.get());
+			Node icon = ImageProvider.getImageView(getClass(), treeIconPath.get());
 			treeNode = new TreeItem<>(treeItemValueWrapper, icon);
 		} else {
 			treeNode = new TreeItem<>(treeItemValueWrapper);

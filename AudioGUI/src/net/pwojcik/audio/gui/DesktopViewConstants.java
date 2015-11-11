@@ -1,6 +1,7 @@
 package net.pwojcik.audio.gui;
 
 /**
+ * Class with constants used in GUI.
  * @author Pawel Wojcik
  * @version 1.0
  */

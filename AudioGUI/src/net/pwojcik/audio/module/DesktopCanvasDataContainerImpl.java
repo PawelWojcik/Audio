@@ -3,22 +3,29 @@ package net.pwojcik.audio.module;
 import java.util.Optional;
 
 import javafx.scene.layout.Pane;
+import net.pwojcik.audio.gui.canvasfactory.CanvasFactory;
 import net.pwojcik.audio.tree.TreeDescription;
 
-public final class DesktopCanvasDataContainerImpl implements DesktopCanvasDataContainer {
+/**
+ * Default implementation of {@linkplain DesktopCanvasDataContainer} interface.
+ * @author Pawel Wojcik
+ * @version 1.0
+ * @param <T> any valid subclass of CanvasFactory
+ */
+public final class DesktopCanvasDataContainerImpl<T extends CanvasFactory> implements DesktopCanvasDataContainer<T> {
 
-	private final Pane canvas;
+	private final T canvasFactory;
 	private final String canvasLabel;
 	private final Optional<TreeDescription> treeDescription;
 	
-	public DesktopCanvasDataContainerImpl(Pane pane, String label) {
-		canvas = pane;
+	public DesktopCanvasDataContainerImpl(T factory, String label) {
+		canvasFactory = factory;
 		canvasLabel = label;
 		treeDescription = Optional.empty();
 	}
 	
-	public DesktopCanvasDataContainerImpl(Pane pane, String label, TreeDescription treeDesc) {
-		canvas = pane;
+	public DesktopCanvasDataContainerImpl(T factory, String label, TreeDescription treeDesc) {
+		canvasFactory = factory;
 		canvasLabel = label;
 		treeDescription = Optional.of(treeDesc);
 	}
@@ -30,12 +37,17 @@ public final class DesktopCanvasDataContainerImpl implements DesktopCanvasDataCo
 
 	@Override
 	public Pane getCanvas() {
-		return canvas;
+		return canvasFactory.getCanvas();
 	}
 
 	@Override
 	public String getCanvasLabel() {
 		return canvasLabel;
+	}
+
+	@Override
+	public T getCanvasFactory() {
+		return canvasFactory;
 	}
 
 }

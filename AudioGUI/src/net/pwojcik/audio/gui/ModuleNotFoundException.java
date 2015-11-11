@@ -2,6 +2,11 @@ package net.pwojcik.audio.gui;
 
 import net.pwojcik.audio.exception.AudioException;
 
+/**
+ * Exception representing unexpected situations during module loading.
+ * @author Pawel Wojcik
+ * @version 1.0
+ */
 public final class ModuleNotFoundException extends AudioException {
 
 	private static final long serialVersionUID = -672147698792893895L;

@@ -3,13 +3,11 @@ package net.pwojcik.audio.segment.implementation;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import net.pwojcik.audio.flowdata.FlowData;
 import net.pwojcik.audio.flowdata.FlowHandler;
 import net.pwojcik.audio.flowdata.SceneChangeFlowData;
@@ -18,10 +16,16 @@ import net.pwojcik.audio.module.Module;
 import net.pwojcik.audio.segment.AbstractSegment;
 import net.pwojcik.audio.segment.SegmentType;
 
+/**
+ * Scene Segment is main area of application where content area is shared
+ * between modules.
+ * @author Pawel Wojcik
+ * @version 1.0
+ */
 public final class SceneSegment extends AbstractSegment {
 
 	private VBox box;
-	private Text canvasTitle;
+	private Label canvasTitle;
 
 	public SceneSegment(Collection<Module> applicationModules) {
 		super(applicationModules);
@@ -51,8 +55,10 @@ public final class SceneSegment extends AbstractSegment {
 	@Override
 	public Pane produceCanvas() {
 		box = new VBox();
-		canvasTitle = new Text("");
-		box.setBackground(new Background(new BackgroundFill(Color.DARKORANGE, null, null)));
+		box.setAlignment(Pos.CENTER);
+		canvasTitle = new Label("");
+		// TODO sepcify properties of font bitch
+		// TODO add more topMargin to canvasTitle
 		box.getChildren().add(canvasTitle);
 		box.getChildren().add(new HBox());
 		return box;

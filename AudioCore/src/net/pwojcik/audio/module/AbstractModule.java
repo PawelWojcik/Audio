@@ -45,6 +45,11 @@ public abstract class AbstractModule<T extends CanvasDataContainer> extends Abst
 		}
 		return canvasDataContainer;
 	}
+	
+	@Override
+	public void postConstruct() {
+		// Do nothing by default.
+	}
 
 	protected abstract T produceCanvasDataContainer();
 	

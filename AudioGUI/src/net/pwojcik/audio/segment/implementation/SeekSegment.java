@@ -12,12 +12,18 @@ import net.pwojcik.audio.module.Module;
 import net.pwojcik.audio.segment.AbstractSegment;
 import net.pwojcik.audio.segment.SegmentType;
 
+/**
+ * Seek Segment represents area where currently played track's moment can be
+ * changed.
+ * @author Pawel Wojcik
+ * @version 1.0
+ */
 public final class SeekSegment extends AbstractSegment {
 
 	public SeekSegment(Collection<Module> applicationModules) {
 		super(applicationModules);
 	}
-	
+
 	@Override
 	public SegmentType getSegmentType() {
 		return SegmentType.SEEK;
