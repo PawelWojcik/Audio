@@ -14,12 +14,21 @@ import javax.xml.bind.Unmarshaller;
 
 import net.pwojcik.audio.module.Module;
 
+/**
+ * Parser for XML configuration of modules enabled in application.
+ * @author Pawel Wojcik
+ * @version 1.0
+ */
 public final class ModuleXMLParser {
 	private static final String RESOURCE_PREFIX_TO_REMOVE = "file:";
 	private static final String MODULES_CONFIGURATION_FILENAME = "modules.xml";
 	private static final String XML_PARSE_EXCEPTION_MSG = "XML configuration file cannot be parsed correctly.";
 	private static final String INSTANTIATION_EXCEPTION = "Configured module cannot be instantiated.";
 
+	/**
+	 * Reads XML file and returns parsed configuration.
+	 * @return modules configuration list
+	 */
 	public List<Configuration> parseConfiguration() {
 		try {
 			String fullPath = getClass().getClassLoader().getResource(MODULES_CONFIGURATION_FILENAME).toURI()
@@ -39,6 +48,11 @@ public final class ModuleXMLParser {
 		return Collections.emptyList();
 	}
 
+	/**
+	 * Transforms configuration objects into new instances of specific Modules.
+	 * @param modulesConfiguration configuration list
+	 * @return collection of enabled modules
+	 */
 	public Collection<Module> transformConfigurations(List<Configuration> modulesConfiguration) {
 		Collection<Module> allModules = new ArrayList<>();
 		try {

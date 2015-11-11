@@ -3,6 +3,7 @@ package net.pwojcik.audio.broadcast;
 import java.util.Collection;
 
 import net.pwojcik.audio.flowdata.FlowData;
+import net.pwojcik.audio.flowdata.FlowHandler;
 
 /**
  * Interface that describes unit which want to take part in communication in
@@ -23,10 +24,11 @@ public interface BroadcastParticipant {
 	Collection<String> getObservedFlowTypes();
 	
 	/**
-	 * Method for handling received message.
-	 * @param data received message
+	 * Method for choosing handler of given flowData from given unit.
+	 * @param data data to handle
+	 * @return handler
 	 */
-	void handleData(FlowData data);
+	FlowHandler handleData(FlowData data);
 	
 	/**
 	 * Method for registering primary broadcaster.

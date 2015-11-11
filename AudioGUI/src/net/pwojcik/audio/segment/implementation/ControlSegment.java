@@ -8,7 +8,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import net.pwojcik.audio.flowdata.FlowData;
 import net.pwojcik.audio.module.Module;
 import net.pwojcik.audio.segment.AbstractSegment;
 import net.pwojcik.audio.segment.SegmentType;
@@ -17,11 +16,6 @@ public final class ControlSegment extends AbstractSegment {
 
 	public ControlSegment(Collection<Module> applicationModules) {
 		super(applicationModules);
-	}
-	
-	@Override
-	public void handleData(FlowData data) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override

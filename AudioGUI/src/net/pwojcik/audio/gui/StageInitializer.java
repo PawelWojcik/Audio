@@ -9,16 +9,17 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import net.pwojcik.audio.Launcher;
 import net.pwojcik.audio.evaluator.SceneSegmentBoxHeightEvaluator;
 import net.pwojcik.audio.evaluator.SceneSegmentBoxWidthEvaluator;
 import net.pwojcik.audio.evaluator.StageHideEvaluator;
 import net.pwojcik.audio.evaluator.WestBoxHeightEvaluator;
+import net.pwojcik.audio.locale.I18N;
 import net.pwojcik.audio.segment.Segment;
 import net.pwojcik.audio.segment.SegmentType;
 
 public final class StageInitializer {
-
+	
+	private static final String APPLICATION_TITLE = "Application_Title";
 	private static final String CSS_FILENAME = "application.css";
 
 	private Segment controlSegment;
@@ -34,8 +35,7 @@ public final class StageInitializer {
 	}
 
 	public void run(Stage stage) {
-		// TODO title in properties file
-		stage.setTitle("XXX");
+		stage.setTitle(I18N.label(APPLICATION_TITLE));
 		BorderPane borderPane = new BorderPane();
 		borderPane.setTop(seekSegment.getCanvas());
 		HBox mainBox = new HBox();
@@ -58,7 +58,7 @@ public final class StageInitializer {
 		borderPane.setCenter(mainBox);
 
 		Scene scene = new Scene(borderPane, DesktopViewConstants.SCENE_WIDTH, DesktopViewConstants.SCENE_HEIGHT);
-		scene.getStylesheets().add(Launcher.class.getResource(CSS_FILENAME).toExternalForm());
+		scene.getStylesheets().add(getClass().getResource(CSS_FILENAME).toExternalForm());
 		stage.setScene(scene);
 		stage.show();
 		stage.setOnHiding(new StageHideEvaluator());

@@ -25,7 +25,7 @@ public abstract class AbstractSegment extends AbstractBroadcastParticipant imple
 	public Collection<String> getObservedFlowTypes() {
 		return Collections.emptyList();
 	}
-
+	
 	@Override
 	public Pane getCanvas() {
 		if (canvas == null) {

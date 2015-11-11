@@ -8,6 +8,7 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 /**
+ * Static factory of labels used in application
  * @author Pawel Wojcik
  * @version 1.0
  */
@@ -40,5 +41,7 @@ public final class I18N {
 		}
 		return label;
 	}
+	
+	private I18N() {}
 
 }

@@ -17,7 +17,7 @@ public interface Segment extends BroadcastParticipant {
 	 */
 	SegmentType getSegmentType();
 	
-
+	// TODO extract to some kind of SegmentGUIProvider
 	Pane getCanvas();
 	
 }

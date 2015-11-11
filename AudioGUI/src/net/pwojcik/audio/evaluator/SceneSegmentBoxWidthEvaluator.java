@@ -8,7 +8,7 @@ import net.pwojcik.audio.segment.Segment;
 
 public final class SceneSegmentBoxWidthEvaluator implements ChangeListener<Number> {
 
-	private static final int FIRST_ELEMENT = 0;
+	private static final int SECOND_ELEMENT = 1;
 	private final Segment sceneSegment;
 
 	public SceneSegmentBoxWidthEvaluator(Segment scene) {
@@ -17,7 +17,7 @@ public final class SceneSegmentBoxWidthEvaluator implements ChangeListener<Numbe
 
 	@Override
 	public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-		Pane canvas = (Pane) sceneSegment.getCanvas().getChildren().get(FIRST_ELEMENT);
+		Pane canvas = (Pane) sceneSegment.getCanvas().getChildren().get(SECOND_ELEMENT);
 		canvas.setPrefWidth(newValue.intValue() - DesktopViewConstants.NAVIGATION_BAR_SIZE);
 	}
 }

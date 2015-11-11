@@ -10,7 +10,10 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import net.pwojcik.audio.broadcast.Broadcaster;
 import net.pwojcik.audio.evaluator.TreeContentSelectionChangeEvaluator;
+import net.pwojcik.audio.exception.CanvasDataContainerException;
 import net.pwojcik.audio.gui.util.ImageProvider;
+import net.pwojcik.audio.module.CanvasDataContainer;
+import net.pwojcik.audio.module.DesktopCanvasDataContainer;
 import net.pwojcik.audio.module.Module;
 import net.pwojcik.audio.tree.TreeDescription;
 import net.pwojcik.audio.tree.TreeItemValueWrapper;
@@ -20,6 +23,7 @@ public final class TreeViewFactory {
 	private final Map<String, TreeItem<TreeItemValueWrapper>> nodeMap;
 	private final TreeItem<TreeItemValueWrapper> rootItem;
 	private final Broadcaster broadcaster;
+
 	public TreeViewFactory(Broadcaster primaryBroadcaster) {
 		broadcaster = primaryBroadcaster;
 		rootItem = new TreeItem<>();
@@ -29,7 +33,8 @@ public final class TreeViewFactory {
 	public TreeView<TreeItemValueWrapper> prepareTreeView(Collection<Module> modules) {
 		TreeView<TreeItemValueWrapper> treeView = new TreeView<>(rootItem);
 		treeView.setShowRoot(false);
-		treeView.getSelectionModel().selectedItemProperty().addListener(new TreeContentSelectionChangeEvaluator(broadcaster));
+		treeView.getSelectionModel().selectedItemProperty()
+				.addListener(new TreeContentSelectionChangeEvaluator(broadcaster));
 		for (Module module : modules) {
 			addTreeNode(module);
 		}
@@ -37,7 +42,12 @@ public final class TreeViewFactory {
 	}
 
 	private void addTreeNode(Module module) {
-		Optional<TreeDescription> optionalTreeProvider = module.getTreeDescription();
+		CanvasDataContainer canvasDataContainer = module.getCanvasDataContainer();
+		if (!(canvasDataContainer instanceof DesktopCanvasDataContainer)) {
+			throw new CanvasDataContainerException();
+		}
+		DesktopCanvasDataContainer canvasData = (DesktopCanvasDataContainer) canvasDataContainer;
+		Optional<TreeDescription> optionalTreeProvider = canvasData.getTreeDescription();
 		if (optionalTreeProvider.isPresent()) {
 			TreeDescription treeDescription = optionalTreeProvider.get();
 			String moduleType = module.getType();

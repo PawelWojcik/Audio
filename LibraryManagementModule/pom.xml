@@ -23,5 +23,10 @@
   		<artifactId>AudioCore</artifactId>
   		<version>1.0</version>
   	</dependency>
+  	<dependency>
+  		<groupId>net.pwojcik.audio</groupId>
+  		<artifactId>AudioGUI</artifactId>
+  		<version>1.0</version>
+  	</dependency>
   </dependencies>
 </project>

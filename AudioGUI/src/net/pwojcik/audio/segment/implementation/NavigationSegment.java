@@ -6,7 +6,6 @@ import javafx.scene.control.TreeView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import net.pwojcik.audio.evaluator.NavigationSegmentBoxHeightEvaluator;
-import net.pwojcik.audio.flowdata.FlowData;
 import net.pwojcik.audio.gui.DesktopViewConstants;
 import net.pwojcik.audio.gui.tree.TreeViewFactory;
 import net.pwojcik.audio.module.Module;
@@ -21,15 +20,10 @@ public final class NavigationSegment extends AbstractSegment {
 	}
 
 	@Override
-	public void handleData(FlowData data) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
 	public SegmentType getSegmentType() {
 		return SegmentType.NAVIGATION;
 	}
-
+	
 	@Override
 	public Pane produceCanvas() {
 		TreeViewFactory factory = new TreeViewFactory(getBroadcaster());

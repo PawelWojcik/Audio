@@ -6,11 +6,11 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
 import net.pwojcik.audio.flowdata.FlowData;
+import net.pwojcik.audio.flowdata.FlowHandler;
 
 /**
  * Class responsible for handling modules' broadcasted messages and adressing
  * them to proper destination.
- * 
  * @author Pawel Wojcik
  * @version 1.0
  */
@@ -44,7 +44,8 @@ public final class Broadcaster {
 	 * <ol> 
 	 * <li>Sender is calling <code>broadcastData(...)</code> method.</li>
 	 * <li>Method is finding units which are interested in receiving given kind of messages.</li>
-	 * <li>Message is being sent to these units.</li>
+	 * <li>Message is being sent to these units to achieve {@linkplain net.pwojcik.audio.flowdata.FlowHandler} instance.</li>
+	 * <li>Message is being sent to proper handler.</li>
 	 * </ol>
 	 * @param data wrapped message
 	 */
@@ -52,7 +53,8 @@ public final class Broadcaster {
 		String dataType = data.getType();
 		Collection<BroadcastParticipant> broadcastReceivers = receivers.get(dataType);
 		for (BroadcastParticipant participant : broadcastReceivers) {
-			participant.handleData(data);
+			FlowHandler handler = participant.handleData(data);
+			handler.handle(data);
 		}
 	}
 
