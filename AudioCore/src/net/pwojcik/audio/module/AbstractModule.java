@@ -2,6 +2,7 @@ package net.pwojcik.audio.module;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 import net.pwojcik.audio.broadcast.AbstractBroadcastParticipant;
 
@@ -15,6 +16,7 @@ public abstract class AbstractModule<T extends CanvasDataContainer> extends Abst
 		implements Module {
 
 	private Collection<String> observedFlowTypes = new ArrayList<>();
+	private Collection<String> providedResources= new ArrayList<>();
 	private String moduleType;
 	private T canvasDataContainer;
 
@@ -34,8 +36,18 @@ public abstract class AbstractModule<T extends CanvasDataContainer> extends Abst
 	}
 
 	@Override
-	public void setObservedFlowTypes(Collection<String> observedTypes) {
+	public final void setObservedFlowTypes(Collection<String> observedTypes) {
 		observedFlowTypes = observedTypes;
+	}
+	
+	@Override
+	public final Collection<String> getProvidedResources() {
+		return providedResources;
+	}
+
+	@Override
+	public final void setProvidedResources(Collection<String> resources) {
+		providedResources = resources;
 	}
 	
 	@Override
@@ -49,6 +61,11 @@ public abstract class AbstractModule<T extends CanvasDataContainer> extends Abst
 	@Override
 	public void postConstruct() {
 		// Do nothing by default.
+	}
+	
+	@Override
+	public <P> Optional<P> provide(Class<P> classRepresentation) {
+		return Optional.empty();
 	}
 
 	protected abstract T produceCanvasDataContainer();

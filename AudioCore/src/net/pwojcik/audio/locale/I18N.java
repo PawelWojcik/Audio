@@ -1,5 +1,6 @@
 package net.pwojcik.audio.locale;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.ResourceBundle;
 
 /**
  * Static factory of labels used in application
+ * 
  * @author Pawel Wojcik
  * @version 1.0
  */
@@ -41,7 +43,22 @@ public final class I18N {
 		}
 		return label;
 	}
-	
-	private I18N() {}
+
+	public static String labelWithParameters(String name, Object... params) {
+		String label;
+		try {
+			ResourceBundle bundle = ResourceBundle.getBundle(I18N_FILENAME, POLISH);
+			MessageFormat formatter = new MessageFormat("");
+			formatter.setLocale(POLISH);
+			formatter.applyPattern(bundle.getString(name));
+			label = formatter.format(params);
+		} catch (MissingResourceException exception) {
+			label = LABEL_NOT_FOUND;
+		}
+		return label;
+	}
+
+	private I18N() {
+	}
 
 }

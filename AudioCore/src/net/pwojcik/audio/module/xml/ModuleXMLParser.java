@@ -62,6 +62,8 @@ public final class ModuleXMLParser {
 				module.setType(config.getModuleType());
 				Collection<String> observedTypes = getObservedTypesAsStrings(config);
 				module.setObservedFlowTypes(observedTypes);
+				Collection<String> providedResources = getProvidedResourcesAsStrings(config);
+				module.setProvidedResources(providedResources);
 				allModules.add(module);
 			}
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException exception) {
@@ -74,6 +76,12 @@ public final class ModuleXMLParser {
 		Collection<String> observedTypes = config.getObservedTypes().stream().map(type -> type.getClassName())
 				.collect(Collectors.toList());
 		return observedTypes;
+	}
+	
+	private Collection<String> getProvidedResourcesAsStrings(Configuration config) {
+		Collection<String> providedResources = config.getProvidedResources().stream().map(type -> type.getClassName())
+				.collect(Collectors.toList());
+		return providedResources;
 	}
 
 }

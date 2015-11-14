@@ -2,6 +2,7 @@ package net.pwojcik.audio.segment;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Optional;
 
 import javafx.scene.layout.Pane;
 import net.pwojcik.audio.broadcast.AbstractBroadcastParticipant;
@@ -32,6 +33,16 @@ public abstract class AbstractSegment extends AbstractBroadcastParticipant imple
 			canvas = produceCanvas();
 		}
 		return canvas;
+	}
+	
+	@Override
+	public Collection<String> getProvidedResources() {
+		return Collections.emptyList();
+	}
+	
+	@Override
+	public <P> Optional<P> provide(Class<P> classRepresentation) {
+		return Optional.empty();
 	}
 	
 	protected final Collection<Module> getModules() {

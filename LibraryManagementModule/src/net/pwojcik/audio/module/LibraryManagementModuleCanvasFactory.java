@@ -1,5 +1,8 @@
 package net.pwojcik.audio.module;
 
+import com.google.common.collect.Lists;
+
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,13 +14,19 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import net.pwojcik.audio.broadcast.Broadcaster;
+import net.pwojcik.audio.container.LibrarySelectedContentContainer;
 import net.pwojcik.audio.dataprovider.SourceDirectory;
+import net.pwojcik.audio.evaluator.AddDirectoryToLibraryEvaluator;
+import net.pwojcik.audio.evaluator.RemoveDirectoryFromLibraryEvaluator;
+import net.pwojcik.audio.evaluator.UpdateLibraryEvaluator;
 import net.pwojcik.audio.gui.canvasfactory.AbstractCanvasFactory;
 import net.pwojcik.audio.gui.util.ImageProvider;
 import net.pwojcik.audio.locale.I18N;
 
 /**
  * Factory for GUI panel representing library content.
+ * 
  * @author Pawel Wojcik
  * @version 1.0
  */
@@ -27,28 +36,42 @@ public final class LibraryManagementModuleCanvasFactory extends AbstractCanvasFa
 		ADD, REMOVE, UPDATE
 	}
 
+	private static final String UPDATE_LIBRARY_ICON = "save.png";
+	private static final String REMOVE_FOLDER_ICON = "folder_delete.png";
+	private static final String ADD_FOLDER_ICON = "folder_add.png";
 	private static final String I18N_ADD_DIR = "LibraryManagement_AddDirectory";
 	private static final String I18N_REMOVE_DIR = "LibraryManagement_RemoveSelected";
 	private static final String I18N_UPDATE = "LibraryManagement_Update";
 
+	private final LibrarySelectedContentContainer selectionContainer;
 	private ListView<SourceDirectory> listView;
 	private ProgressIndicator progressIndicator;
 	private Button addButton;
 	private Button removeButton;
 	private Button updateButton;
 
+	public LibraryManagementModuleCanvasFactory(Broadcaster primaryBroadcaster) {
+		super(primaryBroadcaster);
+		selectionContainer = new LibrarySelectedContentContainer();
+	}
+
 	/**
 	 * Updates table with directories handled by application.
-	 * @param elements all directories handled by application
+	 * 
+	 * @param elements
+	 *            all directories handled by application
 	 */
 	public void setListViewItems(ObservableList<SourceDirectory> elements) {
-		listView.setItems(elements);
+		Platform.runLater(() -> listView.setItems(elements));
 	}
 
 	/**
 	 * Enables/disables button specified by 'type' parameter.
-	 * @param type modified button type
-	 * @param enabled TRUE if button should be enabled
+	 * 
+	 * @param type
+	 *            modified button type
+	 * @param enabled
+	 *            TRUE if button should be enabled
 	 */
 	public void setButtonEnabled(LibraryCanvasButtonType type, boolean enabled) {
 		Button buttonToModify;
@@ -60,6 +83,10 @@ public final class LibraryManagementModuleCanvasFactory extends AbstractCanvasFa
 			buttonToModify = updateButton;
 		}
 		buttonToModify.setDisable(!enabled);
+	}
+	
+	public LibrarySelectedContentContainer getSelectionContainer() {
+		return selectionContainer;
 	}
 
 	@Override
@@ -76,7 +103,10 @@ public final class LibraryManagementModuleCanvasFactory extends AbstractCanvasFa
 
 	private ListView<SourceDirectory> createTable() {
 		ListView<SourceDirectory> listView = new ListView<>();
-		listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		listView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			selectionContainer.setSelectedItems(Lists.newArrayList(newValue));
+		});
 		return listView;
 	}
 
@@ -88,7 +118,7 @@ public final class LibraryManagementModuleCanvasFactory extends AbstractCanvasFa
 
 		VBox buttonContainer = prepareButtonContainer();
 		VBox footer = prepareProgressIndicatorContainer();
-		
+
 		BorderPane container = new BorderPane();
 		container.setPadding(new Insets(0, 0, 0, 10));
 		container.setTop(buttonContainer);
@@ -97,7 +127,7 @@ public final class LibraryManagementModuleCanvasFactory extends AbstractCanvasFa
 	}
 
 	private void prepareProgressIndicator() {
-		progressIndicator = new ProgressIndicator(-1.0);
+		progressIndicator = new ProgressIndicator(ProgressIndicator.INDETERMINATE_PROGRESS);
 		progressIndicator.setVisible(false);
 	}
 
@@ -115,31 +145,28 @@ public final class LibraryManagementModuleCanvasFactory extends AbstractCanvasFa
 		return verticalPanel;
 	}
 
-	private void prepareUpdateButton() {
-		updateButton = new Button();
-		updateButton.setTooltip(new Tooltip(I18N.label(I18N_UPDATE)));
-		updateButton.setDisable(true);
-		updateButton.setGraphic(ImageProvider.getImageView(LibraryManagementModuleCanvasFactory.class, "save.png"));
-		// updateButton.setOnAction();
+	private void prepareAddButton() {
+		addButton = new Button();
+		addButton.setTooltip(new Tooltip(I18N.label(I18N_ADD_DIR)));
+		addButton.setGraphic(ImageProvider.getImageView(LibraryManagementModuleCanvasFactory.class, ADD_FOLDER_ICON));
+		addButton.setOnAction(new AddDirectoryToLibraryEvaluator(progressIndicator, getBroadcaster()));
 	}
 
 	private void prepareRemoveButton() {
 		removeButton = new Button();
 		removeButton.setTooltip(new Tooltip(I18N.label(I18N_REMOVE_DIR)));
-		// removeButton.setDisable(listView.getItems().isEmpty());
-		removeButton.setGraphic(
-				ImageProvider.getImageView(LibraryManagementModuleCanvasFactory.class, "folder_delete.png"));
-		removeButton.setOnAction(e -> {
-			progressIndicator.setVisible(false);
-		});
+		removeButton
+				.setGraphic(ImageProvider.getImageView(LibraryManagementModuleCanvasFactory.class, REMOVE_FOLDER_ICON));
+		removeButton.setOnAction(new RemoveDirectoryFromLibraryEvaluator(progressIndicator, getBroadcaster()));
 	}
 
-	private void prepareAddButton() {
-		addButton = new Button();
-		addButton.setTooltip(new Tooltip(I18N.label(I18N_ADD_DIR)));
-		addButton.setGraphic(ImageProvider.getImageView(LibraryManagementModuleCanvasFactory.class, "folder_add.png"));
-		addButton.setOnAction(e -> {
-			progressIndicator.setVisible(true);
-		});
+	private void prepareUpdateButton() {
+		updateButton = new Button();
+		updateButton.setTooltip(new Tooltip(I18N.label(I18N_UPDATE)));
+		updateButton.setDisable(true);
+		updateButton.setGraphic(
+				ImageProvider.getImageView(LibraryManagementModuleCanvasFactory.class, UPDATE_LIBRARY_ICON));
+		updateButton.setOnAction(new UpdateLibraryEvaluator(progressIndicator, getBroadcaster()));
 	}
+
 }

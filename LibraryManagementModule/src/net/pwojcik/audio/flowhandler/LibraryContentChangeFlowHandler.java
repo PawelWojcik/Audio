@@ -32,6 +32,7 @@ public final class LibraryContentChangeFlowHandler implements FlowHandler {
 		ObservableList<SourceDirectory> items = FXCollections.observableList(elementsList);
 		canvasFactory.setListViewItems(items);
 		canvasFactory.setButtonEnabled(LibraryCanvasButtonType.REMOVE, !items.isEmpty());
+		canvasFactory.setButtonEnabled(LibraryCanvasButtonType.UPDATE, !flowData.isInitializationSignal());
 	}
 
 }

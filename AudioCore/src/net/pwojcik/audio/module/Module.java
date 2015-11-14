@@ -39,6 +39,12 @@ public interface Module extends BroadcastParticipant {
 	void setObservedFlowTypes(Collection<String> observedTypes);
 	
 	/**
+	 * Sets new collection of resources that module can provide.
+	 * @param resources new collection of resources
+	 */
+	void setProvidedResources(Collection<String> resources);
+	
+	/**
 	 * All specific GUI information related to module.
 	 * @return gui-related data
 	 */

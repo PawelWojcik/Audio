@@ -2,12 +2,16 @@ package net.pwojcik.audio.segment.implementation;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
+
+import com.google.common.collect.Lists;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import net.pwojcik.audio.flowdata.FlowData;
 import net.pwojcik.audio.flowdata.FlowHandler;
 import net.pwojcik.audio.flowdata.SceneChangeFlowData;
@@ -24,13 +28,15 @@ import net.pwojcik.audio.segment.SegmentType;
  */
 public final class SceneSegment extends AbstractSegment {
 
+	private Stage stage;
 	private VBox box;
 	private Label canvasTitle;
 
-	public SceneSegment(Collection<Module> applicationModules) {
+	public SceneSegment(Collection<Module> applicationModules, Stage primaryStage) {
 		super(applicationModules);
+		stage = primaryStage;
 	}
-
+	
 	@Override
 	public Collection<String> getObservedFlowTypes() {
 		Collection<String> observedFlowTypes = new ArrayList<>();
@@ -52,6 +58,17 @@ public final class SceneSegment extends AbstractSegment {
 		return SegmentType.SCENE;
 	}
 
+	@Override
+	public Collection<String> getProvidedResources() {
+		return Lists.newArrayList(Stage.class.getName());
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public <P> Optional<P> provide(Class<P> classRepresentation) {
+		return (Optional<P>) Optional.of(stage);
+	}
+	
 	@Override
 	public Pane produceCanvas() {
 		box = new VBox();

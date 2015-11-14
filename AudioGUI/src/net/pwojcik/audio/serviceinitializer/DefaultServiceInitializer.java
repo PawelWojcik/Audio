@@ -23,7 +23,7 @@ public final class DefaultServiceInitializer extends AbstractServiceInitializer 
 
 	@Override
 	protected SegmentFactory produceSegmentFactory() {
-		return new DesktopSegmentFactory();
+		return new DesktopSegmentFactory(stage);
 	}
 
 	@Override

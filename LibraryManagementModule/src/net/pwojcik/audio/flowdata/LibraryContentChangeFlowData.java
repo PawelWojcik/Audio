@@ -16,6 +16,7 @@ public final class LibraryContentChangeFlowData extends AbstractFlowData {
 
 	private Collection<SourceDirectory> directories;
 	private Collection<Audio> allAudio;
+	private boolean initializationSignal;
 	
 	public LibraryContentChangeFlowData(Collection<SourceDirectory> mainLevelDirectoryList, Collection<Audio> audioList) {
 		directories = mainLevelDirectoryList;
@@ -37,5 +38,22 @@ public final class LibraryContentChangeFlowData extends AbstractFlowData {
 	public Collection<SourceDirectory> getDirectories() {
 		return directories;
 	}
+
+	/**
+	 * Returns flag informing whether flow data represents
+	 * data generated after application's start or data 
+	 * which have just been saved in XML.
+	 * @return true if it's first data generated after application's start
+	 */
+	public boolean isInitializationSignal() {
+		return initializationSignal;
+	}
 	
+	/**
+	 * Sets new value of initialization flag.
+	 * @param initialization flag value
+	 */
+	public void setInitializationSignal(boolean initialization) {
+		initializationSignal = initialization;
+	}
 }

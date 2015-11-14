@@ -11,6 +11,7 @@ import net.pwojcik.audio.exception.LibraryXMLCommunicationException;
 /**
  * Class responsible for updating XML descriptor file with information about
  * library directories.
+ * 
  * @author Pawel Wojcik
  * @version 1.0
  */
@@ -37,6 +38,14 @@ final class LibraryDataUpdatingService {
 			marshaller.marshal(libs, file);
 		} catch (JAXBException exception) {
 			throw new LibraryXMLCommunicationException(exception);
+		}
+
+		updateDirectoryIDsIfNecessary();
+	}
+
+	private void updateDirectoryIDsIfNecessary() {
+		if (libraryInformation.getAudioList().isEmpty() && libraryInformation.getAllDirectories().isEmpty()) {
+			libraryInformation.resetDirectoryID();
 		}
 	}
 

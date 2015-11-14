@@ -87,4 +87,8 @@ final class LibraryInformationWrapper {
 		lastDirectoryID = id;
 	}
 
+	void resetDirectoryID() {
+		lastDirectoryID = 0;
+	}
+
 }

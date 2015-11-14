@@ -1,6 +1,7 @@
 package net.pwojcik.audio.gui.canvasfactory;
 
 import javafx.scene.layout.Pane;
+import net.pwojcik.audio.broadcast.Broadcaster;
 
 /**
  * Abstract representation of CanvasFactory.
@@ -9,15 +10,21 @@ import javafx.scene.layout.Pane;
  */
 public abstract class AbstractCanvasFactory implements CanvasFactory {
 
-	private Pane canvas;
+	private final Broadcaster broadcaster;
+	private final Pane canvas;
 
-	public AbstractCanvasFactory() {
+	public AbstractCanvasFactory(Broadcaster primaryBroadcaster) {
+		broadcaster = primaryBroadcaster;
 		canvas = produce();
 	}
 	
 	@Override
 	public final Pane getCanvas() {
 		return canvas;
+	}
+	
+	protected final Broadcaster getBroadcaster() {
+		return broadcaster;
 	}
 
 	protected abstract Pane produce();

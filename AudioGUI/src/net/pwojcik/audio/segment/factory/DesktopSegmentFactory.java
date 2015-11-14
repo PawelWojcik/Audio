@@ -3,6 +3,7 @@ package net.pwojcik.audio.segment.factory;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javafx.stage.Stage;
 import net.pwojcik.audio.module.Module;
 import net.pwojcik.audio.segment.Segment;
 import net.pwojcik.audio.segment.factory.AbstractSegmentFactory;
@@ -18,13 +19,19 @@ import net.pwojcik.audio.segment.implementation.SeekSegment;
  */
 public final class DesktopSegmentFactory extends AbstractSegmentFactory {
 
+	private final Stage stage;
+	
+	public DesktopSegmentFactory(Stage primaryStage) {
+		stage = primaryStage;
+	}
+
 	@Override
 	protected Collection<Segment> produceSegments(Collection<Module> applicationModules) {
 		Collection<Segment> segments = new ArrayList<>();
 		segments.add(new ControlSegment(applicationModules));
 		segments.add(new NavigationSegment(applicationModules));
 		segments.add(new SeekSegment(applicationModules));
-		segments.add(new SceneSegment(applicationModules));
+		segments.add(new SceneSegment(applicationModules, stage));
 		return segments;
 	}
 

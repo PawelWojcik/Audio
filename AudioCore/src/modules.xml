@@ -3,5 +3,7 @@
 <modulesConfiguration>
 	<configuration type="LibraryManagement" class="net.pwojcik.audio.module.LibraryManagementModule">
 		<observedType class="net.pwojcik.audio.flowdata.LibraryContentChangeFlowData" />
+		<provides class="net.pwojcik.audio.dataprovider.LibraryDataManager" />
+		<provides class="net.pwojcik.audio.container.LibrarySelectedContentContainer" />
 	</configuration>
 </modulesConfiguration>
