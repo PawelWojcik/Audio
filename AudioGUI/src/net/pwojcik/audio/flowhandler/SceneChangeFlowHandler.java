@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
 import net.pwojcik.audio.exception.CanvasDataContainerException;
 import net.pwojcik.audio.flowdata.FlowData;
 import net.pwojcik.audio.flowdata.FlowHandler;
@@ -52,7 +51,6 @@ public final class SceneChangeFlowHandler implements FlowHandler {
 		
 		DesktopCanvasDataContainer<?> desktopDataContainer = (DesktopCanvasDataContainer<?>) canvasDataContainer;
 		canvasTitle.setText(desktopDataContainer.getCanvasLabel());
-		canvasTitle.setFont(Font.font(26));
 		Pane moduleCanvas = desktopDataContainer.getCanvas();
 		moduleCanvas.setPrefWidth(mainBox.widthProperty().get());
 		moduleCanvas.setPrefHeight(mainBox.heightProperty().get());

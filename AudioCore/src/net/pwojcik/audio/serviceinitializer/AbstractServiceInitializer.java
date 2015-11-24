@@ -19,7 +19,7 @@ import net.pwojcik.audio.segment.factory.SegmentFactory;
  */
 public abstract class AbstractServiceInitializer implements ServiceInitializer {
 
-	private Collection<Segment> segments;
+	private Collection<Segment<?>> segments;
 	private Collection<Module> modules;
 
 	@Override
@@ -32,7 +32,7 @@ public abstract class AbstractServiceInitializer implements ServiceInitializer {
 		run();
 	}
 
-	protected final Collection<Segment> getSegments() {
+	protected final Collection<Segment<?>> getSegments() {
 		return segments;
 	}
 	
@@ -40,7 +40,7 @@ public abstract class AbstractServiceInitializer implements ServiceInitializer {
 		return modules;
 	}
 
-	private Collection<Segment> createSegments(Collection<Module> applicationModules) {
+	private Collection<Segment<?>> createSegments(Collection<Module> applicationModules) {
 		SegmentFactory factory = produceSegmentFactory();
 		return factory.create(applicationModules);
 	}

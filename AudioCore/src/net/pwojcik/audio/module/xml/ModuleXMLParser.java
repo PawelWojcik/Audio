@@ -12,6 +12,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import net.pwojcik.audio.exception.ModulesConfigurationException;
 import net.pwojcik.audio.module.Module;
 
 /**
@@ -60,6 +61,7 @@ public final class ModuleXMLParser {
 				Class<?> classRepresentation = Class.forName(config.getClassName());
 				Module module = (Module) classRepresentation.newInstance();
 				module.setType(config.getModuleType());
+				module.setApplicationDefaultModule(config.isDefaultModule());
 				Collection<String> observedTypes = getObservedTypesAsStrings(config);
 				module.setObservedFlowTypes(observedTypes);
 				Collection<String> providedResources = getProvidedResourcesAsStrings(config);

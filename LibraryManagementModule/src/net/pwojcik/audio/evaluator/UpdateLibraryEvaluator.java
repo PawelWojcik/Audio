@@ -15,6 +15,11 @@ import net.pwojcik.audio.flowdata.LibraryContentChangeFlowData;
 import net.pwojcik.audio.gui.util.GUIUtils;
 import net.pwojcik.audio.locale.I18N;
 
+/**
+ * Evaluator run when "Update Library" button is clicked.
+ * @author Pawel Wojcik
+ * @version 1.0
+ */
 public final class UpdateLibraryEvaluator implements EventHandler<ActionEvent> {
 
 	private static final String NOTIFICATION_TITLE = "LibraryManagement_UpdateNotificationTitle";

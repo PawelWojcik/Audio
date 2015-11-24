@@ -19,7 +19,7 @@ import net.pwojcik.audio.tree.TreeItemValueWrapper;
  * @author Pawel Wojcik
  * @version 1.0
  */
-public final class NavigationSegment extends AbstractSegment {
+public final class NavigationSegment extends AbstractSegment<SingleSegmentState> {
 
 	public NavigationSegment(Collection<Module> applicationModules) {
 		super(applicationModules);
@@ -31,20 +31,22 @@ public final class NavigationSegment extends AbstractSegment {
 	}
 
 	@Override
-	public Pane produceCanvas() {
+	public Pane produceCanvas(SingleSegmentState currentState) {
 		TreeViewFactory factory = new TreeViewFactory(getBroadcaster());
 		TreeView<TreeItemValueWrapper> treeView = factory.prepareTreeView(getModules());
 		final VBox box = new VBox();
-		int width = DesktopViewConstants.NAVIGATION_BAR_SIZE - DesktopViewConstants.NAVIGATION_BAR_SPACING * 2;
-		box.setMinWidth(width);
-		box.setMaxWidth(width);
-		int minHeight = DesktopViewConstants.SCENE_HEIGHT - DesktopViewConstants.FIRST_PLAYER_HEIGHT
+		int minHeight = DesktopViewConstants.SCENE_HEIGHT - DesktopViewConstants.SEEK_SEGMENT_HEIGHT
 				- DesktopViewConstants.NAVIGATION_BAR_SIZE - 20;
 		box.setMinHeight(minHeight);
 		box.heightProperty().addListener(new NavigationSegmentBoxHeightEvaluator(treeView));
 		box.setMaxHeight(Double.MAX_VALUE);
 		box.getChildren().add(treeView);
 		return box;
+	}
+	
+	@Override
+	protected SingleSegmentState getDefaultState() {
+		return SingleSegmentState.DEFAULT;
 	}
 
 }

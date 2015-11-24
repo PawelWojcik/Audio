@@ -17,8 +17,9 @@ public abstract class AbstractModule<T extends CanvasDataContainer> extends Abst
 
 	private Collection<String> observedFlowTypes = new ArrayList<>();
 	private Collection<String> providedResources= new ArrayList<>();
-	private String moduleType;
 	private T canvasDataContainer;
+	private String moduleType;
+	private boolean applicationDefault;
 
 	@Override
 	public final void setType(String type) {
@@ -67,7 +68,17 @@ public abstract class AbstractModule<T extends CanvasDataContainer> extends Abst
 	public <P> Optional<P> provide(Class<P> classRepresentation) {
 		return Optional.empty();
 	}
+	
+	@Override
+	public final boolean isApplicationDefaultModule() {
+		return applicationDefault;
+	}
 
+	@Override
+	public final void setApplicationDefaultModule(boolean isDefault) {
+		applicationDefault = isDefault;
+	}
+	
 	protected abstract T produceCanvasDataContainer();
 	
 }

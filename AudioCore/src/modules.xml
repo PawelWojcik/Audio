@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE modulesConfiguration>
 <modulesConfiguration>
+	<configuration type="NowPlaying" defaultModule="true" class="net.pwojcik.audio.module.NowPlayingModule">
+		<observedType class="net.pwojcik.audio.flowdata.CurrentPlaylistChangeFlowData" />
+	</configuration>
 	<configuration type="LibraryManagement" class="net.pwojcik.audio.module.LibraryManagementModule">
 		<observedType class="net.pwojcik.audio.flowdata.LibraryContentChangeFlowData" />
 		<provides class="net.pwojcik.audio.dataprovider.LibraryDataManager" />

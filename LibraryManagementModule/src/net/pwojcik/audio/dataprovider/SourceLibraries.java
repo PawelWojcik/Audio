@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
+ * XML wrapper for &lt;sourceLibraries&gt; node.
  * @author Pawel Wojcik
  * @version 1.0
  */

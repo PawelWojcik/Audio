@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import net.pwojcik.audio.module.Module;
 import net.pwojcik.audio.segment.Segment;
+import net.pwojcik.audio.segment.SegmentState;
 
 /**
  * Factory of  {@link net.pwojcik.audio.segment.Segment} objects. 
@@ -17,5 +18,5 @@ public interface SegmentFactory {
 	 * @param applicationModules modules available in application
 	 * @return collection segments
 	 */
-	Collection<Segment> create(Collection<Module> applicationModules);
+	Collection<Segment<? extends SegmentState>> create(Collection<Module> applicationModules);
 }

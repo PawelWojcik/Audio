@@ -85,6 +85,10 @@ public final class LibraryManagementModuleCanvasFactory extends AbstractCanvasFa
 		buttonToModify.setDisable(!enabled);
 	}
 	
+	/**
+	 * Returns container of items selected on this panel.
+	 * @return
+	 */
 	public LibrarySelectedContentContainer getSelectionContainer() {
 		return selectionContainer;
 	}
@@ -94,8 +98,6 @@ public final class LibraryManagementModuleCanvasFactory extends AbstractCanvasFa
 		listView = createTable();
 		Pane eastContainer = createEastContainer();
 		BorderPane borderPane = new BorderPane();
-		// TODO wyrzucic do CSSa
-		borderPane.setPadding(new Insets(10));
 		borderPane.setCenter(listView);
 		borderPane.setRight(eastContainer);
 		return borderPane;

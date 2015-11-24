@@ -41,5 +41,10 @@
   		<artifactId>LibraryManagementModule</artifactId>
   		<version>1.0</version>
   	</dependency>
+  	<dependency>
+  		<groupId>net.pwojcik.audio</groupId>
+  		<artifactId>NowPlayingModule</artifactId>
+  		<version>1.0</version>
+  	</dependency>
   </dependencies>
 </project>

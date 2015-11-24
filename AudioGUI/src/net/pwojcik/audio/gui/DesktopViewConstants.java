@@ -19,8 +19,8 @@ public final class DesktopViewConstants {
 	public static final int SCENE_WIDTH = 921;
 	public static final int SCENE_HEIGHT = 500;
 	public static final int NAVIGATION_BAR_SIZE = 200;
-	public static final int FIRST_PLAYER_HEIGHT = 25;
-	public static final int NAVIGATION_BAR_SPACING = 3;
+	public static final int SEEK_SEGMENT_HEIGHT = 25;
+	public static final int SPACING = 3;
 
 	private DesktopViewConstants() {
 	}

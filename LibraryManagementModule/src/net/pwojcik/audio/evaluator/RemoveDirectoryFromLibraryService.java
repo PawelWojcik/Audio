@@ -9,6 +9,11 @@ import net.pwojcik.audio.dataprovider.LibraryDataManager;
 import net.pwojcik.audio.dataprovider.SourceDirectory;
 import net.pwojcik.audio.flowdata.LibraryContentChangeFlowData;
 
+/**
+ * Service running in another thread which removes tracks from library.
+ * @author Pawel Wojcik
+ * @version 1.0
+ */
 final class RemoveDirectoryFromLibraryService extends Service<Void> {
 
 	private final Broadcaster broadcaster;

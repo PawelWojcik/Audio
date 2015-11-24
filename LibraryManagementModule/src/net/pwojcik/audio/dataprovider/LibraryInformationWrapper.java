@@ -87,6 +87,9 @@ final class LibraryInformationWrapper {
 		lastDirectoryID = id;
 	}
 
+	/**
+	 * Sets highest directory ID to zero.
+	 */
 	void resetDirectoryID() {
 		lastDirectoryID = 0;
 	}

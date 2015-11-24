@@ -7,6 +7,11 @@ import net.pwojcik.audio.broadcast.Broadcaster;
 import net.pwojcik.audio.dataprovider.LibraryDataManager;
 import net.pwojcik.audio.flowdata.LibraryContentChangeFlowData;
 
+/**
+ * Service running in another thread which adds tracks to library.
+ * @author Pawel Wojcik
+ * @version 1.0
+ */
 final class AddDirectoryToLibraryService extends Service<Void> {
 
 	private final Broadcaster broadcaster;
@@ -18,6 +23,10 @@ final class AddDirectoryToLibraryService extends Service<Void> {
 		broadcaster = primaryBroadcaster;
 	}
 
+	/**
+	 * Returns count of files found within directory and subdirectories.
+	 * @return count of found files
+	 */
 	int getFoundFilesCount() {
 		return foundFilesCount;
 	}

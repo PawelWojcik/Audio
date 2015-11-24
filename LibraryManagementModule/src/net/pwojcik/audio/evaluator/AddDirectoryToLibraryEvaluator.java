@@ -12,6 +12,11 @@ import net.pwojcik.audio.broadcast.Broadcaster;
 import net.pwojcik.audio.gui.util.GUIUtils;
 import net.pwojcik.audio.locale.I18N;
 
+/**
+ * Evaluator run when "Add To Library" button is clicked.
+ * @author Pawel Wojcik
+ * @version 1.0
+ */
 public final class AddDirectoryToLibraryEvaluator implements EventHandler<ActionEvent> {
 
 	private static final String DIRECTORY_CHOOSER_TITLE = "LibraryManagement_DirectoryChooserTitle";

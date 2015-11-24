@@ -12,6 +12,11 @@ import net.pwojcik.audio.dataprovider.SourceDirectory;
 import net.pwojcik.audio.gui.util.GUIUtils;
 import net.pwojcik.audio.locale.I18N;
 
+/**
+ * Evaluator run when "Remove From Library" button is clicked.
+ * @author Pawel Wojcik
+ * @version 1.0
+ */
 public final class RemoveDirectoryFromLibraryEvaluator implements EventHandler<ActionEvent> {
 
 	private static final String NOTIFICATION_TITLE = "LibraryManagement_RemoveDirectoryNotificationTitle";

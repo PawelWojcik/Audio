@@ -21,33 +21,56 @@ public interface Module extends BroadcastParticipant {
 
 	/**
 	 * Determines type of module.
+	 * 
 	 * @return type of module
 	 */
 	String getType();
 
 	/**
 	 * Defines type of module.
-	 * @param type new type of module
+	 * 
+	 * @param type
+	 *            new type of module
 	 */
 	void setType(String type);
-	
+
 	/**
-	 * Sets new collection of observed Flow Data types. 
-	 * Collection holds class names with full package names.
-	 * @param observedTypes collection of types
+	 * Checks whether module is the one which is loaded and seen at application
+	 * startup.
+	 * 
+	 * @return is module default
+	 */
+	boolean isApplicationDefaultModule();
+
+	/**
+	 * Sets flag determining whether module is the one which is loaded and seen
+	 * at application startup.
+	 * @param isDefault true if module is default module
+	 */
+	void setApplicationDefaultModule(boolean isDefault);
+
+	/**
+	 * Sets new collection of observed Flow Data types. Collection holds class
+	 * names with full package names.
+	 * 
+	 * @param observedTypes
+	 *            collection of types
 	 */
 	void setObservedFlowTypes(Collection<String> observedTypes);
-	
+
 	/**
 	 * Sets new collection of resources that module can provide.
-	 * @param resources new collection of resources
+	 * 
+	 * @param resources
+	 *            new collection of resources
 	 */
 	void setProvidedResources(Collection<String> resources);
-	
+
 	/**
 	 * All specific GUI information related to module.
+	 * 
 	 * @return gui-related data
 	 */
 	CanvasDataContainer getCanvasDataContainer();
-	
+
 }

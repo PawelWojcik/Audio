@@ -12,16 +12,16 @@ import net.pwojcik.audio.segment.Segment;
  */
 public abstract class AbstractSegmentFactory implements SegmentFactory {
 
-	private Collection<Segment> segments;
+	private Collection<Segment<?>> segments;
 
 	@Override
-	public final Collection<Segment> create(Collection<Module> applicationModules) {
+	public final Collection<Segment<?>> create(Collection<Module> applicationModules) {
 		if (segments == null) {
 			segments = produceSegments(applicationModules);
 		}
 		return segments;
 	}
 
-	protected abstract Collection<Segment> produceSegments(Collection<Module> applicationModules);
+	protected abstract Collection<Segment<?>> produceSegments(Collection<Module> applicationModules);
 
 }

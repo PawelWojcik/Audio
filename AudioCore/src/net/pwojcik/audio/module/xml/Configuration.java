@@ -17,6 +17,8 @@ public final class Configuration {
 	private String moduleType;
 	@XmlAttribute(name = "class")
 	private String className;
+	@XmlAttribute(name = "defaultModule", required = false)
+	private boolean defaultModule;
 	@XmlElement(name = "observedType", required = false)
 	private List<ObservedFlowDataType> observedTypes = new ArrayList<>();
 	@XmlElement(name = "provides", required = false)
@@ -25,7 +27,7 @@ public final class Configuration {
 	public String getClassName() {
 		return className;
 	}
-	
+
 	public void setClassName(String classPath) {
 		className = classPath;
 	}
@@ -37,21 +39,29 @@ public final class Configuration {
 	public void setModuleType(String type) {
 		moduleType = type;
 	}
-	
+
 	public List<ObservedFlowDataType> getObservedTypes() {
 		return observedTypes;
 	}
-	
+
 	public void setObservedTypes(List<ObservedFlowDataType> types) {
 		observedTypes = types;
 	}
-	
+
 	public List<ProvidedType> getProvidedResources() {
 		return providedResources;
 	}
-	
+
 	public void setProvidedResources(List<ProvidedType> resources) {
 		this.providedResources = resources;
 	}
-	
+
+	public boolean isDefaultModule() {
+		return defaultModule;
+	}
+
+	public void setDefaultModule(boolean isDefault) {
+		defaultModule = isDefault;
+	}
+
 }

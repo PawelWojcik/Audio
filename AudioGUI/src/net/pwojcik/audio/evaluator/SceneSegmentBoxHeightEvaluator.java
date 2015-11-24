@@ -13,9 +13,9 @@ import net.pwojcik.audio.segment.Segment;
 public final class SceneSegmentBoxHeightEvaluator implements ChangeListener<Number> {
 
 	private static final int SECOND_ELEMENT = 1;
-	private final Segment sceneSegment;
+	private final Segment<?> sceneSegment;
 
-	public SceneSegmentBoxHeightEvaluator(Segment scene) {
+	public SceneSegmentBoxHeightEvaluator(Segment<?> scene) {
 		sceneSegment = scene;
 	}
 

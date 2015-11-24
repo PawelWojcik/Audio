@@ -26,8 +26,8 @@ public final class DesktopSegmentFactory extends AbstractSegmentFactory {
 	}
 
 	@Override
-	protected Collection<Segment> produceSegments(Collection<Module> applicationModules) {
-		Collection<Segment> segments = new ArrayList<>();
+	protected Collection<Segment<?>> produceSegments(Collection<Module> applicationModules) {
+		Collection<Segment<?>> segments = new ArrayList<>();
 		segments.add(new ControlSegment(applicationModules));
 		segments.add(new NavigationSegment(applicationModules));
 		segments.add(new SeekSegment(applicationModules));
